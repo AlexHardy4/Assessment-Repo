@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8d171694f72025548af3af7fb6205d8d
+guid: 92b8aca52a0b6c843948f2c82e786fbd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3897206397377797513
-    second: crateWood_side_0
+      213: -7101883290876223250
+    second: Neon Tiles_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crateWood_side_0
+      name: Neon Tiles_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 56
-        height: 56
+        width: 144
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 772aaeb0e675ae9c0800000000000000
-      internalID: -3897206397377797513
+      spriteID: ee06a0b36ca017d90800000000000000
+      internalID: -7101883290876223250
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      crateWood_side_0: -3897206397377797513
+      Neon Tiles_0: -7101883290876223250
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
