@@ -20,12 +20,12 @@ public class MenuController : MonoBehaviour
 
     public void SinglePlayer()
     {
-        SceneManager.LoadScene("SinglePlayer");
+        SceneManager.LoadScene("SinglePlayerScene");
     }
 
     public void Multiplayer()
     {
-        SceneManager.LoadScene("MultiPlayer");
+        SceneManager.LoadScene("MultiPlayerScene");
     }
 
     public void Options()
