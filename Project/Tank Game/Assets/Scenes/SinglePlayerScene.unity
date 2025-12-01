@@ -146,9 +146,9 @@ Transform:
   m_GameObject: {fileID: 316239396}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: -0.02, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1374762767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2276,6 +2276,8 @@ GameObject:
   m_Component:
   - component: {fileID: 367710273}
   - component: {fileID: 367710272}
+  - component: {fileID: 367710275}
+  - component: {fileID: 367710274}
   m_Layer: 0
   m_Name: bigRed
   m_TagString: Untagged
@@ -2355,6 +2357,79 @@ Transform:
   - {fileID: 2099576514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &367710274
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367710271}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.04, y: 1.04}
+    newSize: {x: 1.04, y: 1.04}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.04, y: 1.04}
+  m_EdgeRadius: 0
+--- !u!50 &367710275
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367710271}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &384241388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,7 +2780,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   speed: 2
-  rotationSpeed: 0.2
+  rotationSpeed: 2
   idle: {fileID: 8300000, guid: c28bfb2e4ed8f334a8cfb37d098ec22f, type: 3}
   moving: {fileID: 8300000, guid: 2f6afc425594abd4c9030897d704dca6, type: 3}
 --- !u!212 &903136340
@@ -2772,12 +2847,11 @@ Transform:
   m_GameObject: {fileID: 903136338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.52, y: -0.5280064, z: 0}
+  m_LocalPosition: {x: -7.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1103623192}
-  - {fileID: 1221679177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &903136342
@@ -2883,7 +2957,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.13, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1221679177}
   m_Father: {fileID: 903136341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1103623193
@@ -2953,6 +3028,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe716f03796597c43a728f7c10e6f7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 2722817973958025918, guid: f4cf0f8d530f9294ab55113d9801586d, type: 3}
+  bulletTransform: {fileID: 1221679177}
+  canShoot: 1
+  shootDelay: 1.5
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 09b61725-1aa6-4478-b17a-1d19d296ba4c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &1221679176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,7 +3051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1221679177}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Bullet Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2978,11 +3066,11 @@ Transform:
   m_GameObject: {fileID: 1221679176}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0.208, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 903136341}
+  m_Father: {fileID: 1103623192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1374762765
 GameObject:
@@ -3122,6 +3210,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 903136341}
   - {fileID: 1374762767}
+  - {fileID: 903136341}
   - {fileID: 367710273}
