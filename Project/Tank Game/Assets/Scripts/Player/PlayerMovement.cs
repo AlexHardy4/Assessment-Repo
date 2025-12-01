@@ -8,45 +8,40 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     [Header("Movement Settings")]
     InputAction moveAction;
+    InputAction rotateAction;
     public float speed;
     public float rotationSpeed;
 
     [SerializeField]
     [Header("Audio")]
-    public AudioSource idle;
+    public AudioClip idle;
     public AudioClip moving;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+
+        rotateAction = InputSystem.actions.FindAction("Rotate");
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        Rotate();
     }
 
     public void Move()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
+        Vector2 movementInput = moveAction.ReadValue<Vector2>();
+        //need to move in the way the ship is facing
+        transform.Translate(Vector3.up * movementInput.y * speed * Time.deltaTime);
+        transform.Translate(Vector3.right * movementInput.x * speed * Time.deltaTime);
+    }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.back, -rotationSpeed);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(Vector3.back, rotationSpeed);
-        }
+    public void Rotate()
+    { 
+        Vector2 rotationInput = rotateAction.ReadValue<Vector2>();
+        GetComponent<Rigidbody2D>().MoveRotation(GetComponent<Rigidbody2D>().rotation + rotationInput.x * rotationSpeed);
     }
 }
