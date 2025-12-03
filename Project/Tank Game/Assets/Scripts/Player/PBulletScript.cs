@@ -19,6 +19,16 @@ public class BulletScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rot + 90);
     }
 
+    public void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        //code that when the bullet hits something it gets destroyed its force set to 0 and plays a sound and explosion animation
+        //when the bullet hits an enemy it deals damage to the enemy
+        if (hit.collider.CompareTag("Enemy"))
+
+            return;
+        Destroy(gameObject);
+    }
+
     void OnBecameInvisible()
     {
         Destroy(gameObject);
