@@ -16,9 +16,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Audio")]
     public AudioClip idle;
     public AudioClip moving;
+
+    [SerializeField]
+    [Header("Health")]
+    public int maxHealth = 5;
+    public int currentHealth;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentHealth = maxHealth;
+
         moveAction = InputSystem.actions.FindAction("Move");
 
         rotateAction = InputSystem.actions.FindAction("Rotate");
