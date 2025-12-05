@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 
@@ -11,8 +12,10 @@ public class gamemanager : MonoBehaviour
     public float playerMaxHealth;
     public int score;
 
-    public GameObject pauseScreen;
     PlayerMovement PlayerMovement;
+
+    public GameObject pauseScreen;
+    public InputAction pauseAction;
 
     //public GameOverScreen gameOverScreen;
 
@@ -22,6 +25,9 @@ public class gamemanager : MonoBehaviour
         playerHealth = PlayerMovement.currentHealth;
         playerMaxHealth = PlayerMovement.maxHealth;
         score = PlayerMovement.score;
+
+        pauseAction = InputSystem.actions.FindAction("Pause");
+
     }
 
     // Update is called once per frame
@@ -46,7 +52,7 @@ public class gamemanager : MonoBehaviour
     public void ShowPauseMenu()
     {
         // Logic to display pause menu UI
-        if (Input.GetButtonDown("Pause"))
+        if (pauseAction.WasPerformedThisFrame())
         {
             if (pauseScreen.activeSelf)
             {
