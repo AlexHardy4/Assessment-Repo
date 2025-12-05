@@ -1,9 +1,15 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D Rigidbody2D;
+    SpriteRenderer SpriteRenderer;
+    Animator anim;
 
     [SerializeField]
     [Header("Movement Settings")]
@@ -21,6 +27,18 @@ public class PlayerMovement : MonoBehaviour
     [Header("Health")]
     public int maxHealth = 5;
     public int currentHealth;
+    public bool invincible = false;
+    public float invincibilityTime = 1f;
+    public float invincibilityFlashDuration = 0.2f;
+
+    [SerializeField]
+    [Header("Score")]
+    public int score = 0;
+
+    [SerializeField]
+    [Header("UI")]
+    public TextMeshProUGUI scoreText, gameOverText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,4 +70,55 @@ public class PlayerMovement : MonoBehaviour
         Vector2 rotationInput = rotateAction.ReadValue<Vector2>();
         GetComponent<Rigidbody2D>().MoveRotation(GetComponent<Rigidbody2D>().rotation + rotationInput.x * rotationSpeed);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If we hit spikes, remove 1hp and run the post damage coroutine.
+        if (collision.CompareTag("Enemy"))
+        {
+            TakeDamage(1, true);
+        }
+    }
+
+    void TakeDamage(int damageAmount, bool postDamageInvincibility)
+    {
+        currentHealth -= damageAmount;
+        //UpdateUI();
+
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(Death());
+            return;
+        }
+
+        if (postDamageInvincibility)
+        {
+            StartCoroutine(PostDamageInvincibility());
+        }
+    }
+
+    IEnumerator PostDamageInvincibility()
+    {
+        // Set player to invincible
+        invincible = true;
+        float startTime = Time.time;
+        // Turn on/off sprite renderer at intervals until the invincibility period ends.
+        while ((Time.time - startTime) < invincibilityTime)
+        {
+            SpriteRenderer.enabled = !SpriteRenderer.enabled;
+            yield return new WaitForSeconds(invincibilityFlashDuration);
+        }
+        SpriteRenderer.enabled = true;
+        invincible = false;
+    }
+    IEnumerator Death()
+    {
+        // Make player invisible, and show game over text.
+        SpriteRenderer.enabled = false;
+        gameOverText.enabled = true;
+        // Wait for 1 second to reload scene.
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }
