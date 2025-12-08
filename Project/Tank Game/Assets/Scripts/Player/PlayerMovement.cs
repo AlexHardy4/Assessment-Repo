@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     InputAction rotateAction;
     public float speed;
     public float rotationSpeed;
+    public bool isMoving = false;
+    
 
     [SerializeField]
     [Header("Audio")]
@@ -63,6 +65,12 @@ public class PlayerMovement : MonoBehaviour
         //need to move in the way the ship is facing
         transform.Translate(Vector3.up * movementInput.y * speed * Time.deltaTime);
         transform.Translate(Vector3.right * movementInput.x * speed * Time.deltaTime);
+        isMoving = true;
+        if (movementInput == Vector2.zero)
+        {
+            transform.Translate(Vector3.zero);
+            isMoving = false;
+        }
     }
 
     public void Rotate()
